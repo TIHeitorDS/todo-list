@@ -1,42 +1,42 @@
-import { db } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig";
 import { ref, set, get, push, update } from "firebase/database";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { Task, User } from "../lib/definitions";
-import { v4 as uuidv4 } from "uuid";
 
 export async function login(userData: User): Promise<User | undefined> {
-  const usersRef = ref(db, "users");
-
+  const { email, password } = userData;
   try {
-    const snapshot = await get(usersRef);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      const users = Object.entries(data).map(([id, user]) => ({
-        ...(user as User),
-        id,
-      }));
-
-      return users.find(
-        (user) =>
-          user.email === userData.email && user.password === userData.password
-      );
-    } else {
-      return undefined;
-    }
+    return {
+      id: user.uid,
+      name: user.displayName || "",
+      email: user.email || "",
+      password: password,
+      tasks: [],
+    };
   } catch (error) {
-    console.log(error);
+    console.error("Erro ao fazer login:", error);
+    return undefined;
   }
 }
 
 export async function createUser(userData: User): Promise<boolean> {
+  const { email, password } = userData;
   try {
-    userData.id = uuidv4();
-
-    const userRef = ref(db, "users");
-    const newUser = push(userRef);
-
-    await set(newUser, userData);
-
+    await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser!, {
+      displayName: userData.name,
+    });
     return true;
   } catch (error) {
     console.error("Erro ao criar o usuário:", error);
@@ -50,7 +50,7 @@ export async function createTask(
 ): Promise<boolean> {
   try {
     data.status = false;
-    const tasksRef = ref(db, `users/${user?.id}/tasks`);
+    const tasksRef = ref(db, `tasks/${user?.id}`);
     const newTaskRef = push(tasksRef);
     await set(newTaskRef, data);
     return true;
@@ -61,7 +61,7 @@ export async function createTask(
 }
 
 export async function fetchAllTasks(user: User): Promise<Task[]> {
-  const tasksRef = ref(db, `users/${user?.id}/tasks`);
+  const tasksRef = ref(db, `tasks/${user.id}`);
 
   try {
     const snapshot = await get(tasksRef);
@@ -82,7 +82,7 @@ export async function fetchAllTasks(user: User): Promise<Task[]> {
 }
 
 export async function fetchTask(user: User, id: string): Promise<Task | null> {
-  const taskRef = ref(db, `users/${user.id}/tasks/${id}`);
+  const taskRef = ref(db, `tasks/${user?.id}/${id}`);
 
   try {
     const snapshot = await get(taskRef);
@@ -102,7 +102,7 @@ export async function updateTask(
   id: string,
   data: Task
 ): Promise<boolean> {
-  const taskRef = ref(db, `users/${user?.id}/tasks/${id}`);
+  const taskRef = ref(db, `tasks/${user?.id}/${id}`);
 
   try {
     await update(taskRef, data);
