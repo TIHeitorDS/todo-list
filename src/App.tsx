@@ -13,7 +13,7 @@ function App() {
   }, [user]);
 
   return (
-    <div className="w-11/12 mx-auto p-4">
+    <div className="w-11/12 h-screen mx-auto p-4">
       <Outlet />
     </div>
   );
