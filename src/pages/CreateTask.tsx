@@ -37,7 +37,10 @@ export default function CreateTask() {
     <>
       <Navigation>
         <div className="flex items-center justify-center">
-          <Link to={"/"} className="text-green text-xl cursor-pointer h-full">
+          <Link
+            to={"/"}
+            className="dark:text-green text-xl cursor-pointer w-9 h-9 flex items-center justify-center rounded-xl light:bg-orange"
+          >
             {"<"}
           </Link>
           <p className="font-bold text-xl text-center grow">Criar Tarefa</p>
@@ -52,7 +55,7 @@ export default function CreateTask() {
           type="text"
           id="title"
           placeholder="Título da tarefa"
-          className="border-b border-dark focus:text-green focus:border-green transition-colors outline-0 py-[10px]"
+          className="border-b dark:border-dark light:border-orange dark:focus:text-green dark:focus:border-green light:focus:text-orange light:focus:border-orange transition-colors outline-0 py-[10px]"
           {...register("title", { required: true })}
         />
 
@@ -61,7 +64,7 @@ export default function CreateTask() {
           <input
             type="date"
             id="date"
-            className="bg-dark p-[10px] w-fit border-b border-b-green outline-0"
+            className="dark:bg-dark p-[10px] w-fit border-b dark:border-b-green light:border-b-orange outline-0"
             {...register("date", { required: true })}
           />
         </div>
@@ -73,14 +76,14 @@ export default function CreateTask() {
 
         <textarea
           id="description"
-          className="bg-dark rounded-xl text-white/50 px-3 py-[10px] outline-0 focus:border focus:border-green transition-colors"
+          className="dark:bg-dark light:bg-white-secondary rounded-xl dark:text-white/50 px-3 py-[10px] ring-0 border-0 focus:outline dark:focus:outline-green light:focus:outline-orange transition-colors"
           placeholder="Descrição"
           {...register("description")}
         ></textarea>
 
         <button
           type="submit"
-          className="bg-green ml-auto w-fit text-dark font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
+          className="dark:bg-green light:bg-orange ml-auto w-fit text-dark font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
         >
           Confirmar
         </button>
@@ -88,14 +91,14 @@ export default function CreateTask() {
 
       <div
         ref={successAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>Tarefa criada com sucesso</p>
       </div>
 
       <div
         ref={errorAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>Erro ao criar tarefa</p>
       </div>

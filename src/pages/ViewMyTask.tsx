@@ -74,7 +74,7 @@ export default function ViewMyTask() {
               <div className="flex items-center justify-center ">
                 <Link
                   to={"/"}
-                  className="text-green text-xl cursor-pointer h-full"
+                  className="dark:text-green  text-xl cursor-pointer w-9 h-9 light:bg-orange rounded-lg flex items-center justify-center"
                 >
                   {"<"}
                 </Link>
@@ -90,14 +90,14 @@ export default function ViewMyTask() {
               <p className="text-pink">Concluir em {formatDate(task.date)}</p>
             </div>
 
-            <div className="bg-dark rounded-lg p-3.5 h-fit mt-[20px] mb-24">
+            <div className="dark:bg-dark light:bg-white-secondary/50 rounded-lg p-3.5 h-fit mt-[20px] mb-24">
               {task.description ? task.description : "Sem descrição"}
             </div>
 
             <div className="flex gap-4 items-center w-fit mx-auto">
               <button
                 onClick={() => setShowEdit(true)}
-                className="text-green border border-green font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
+                className="dark:text-green light:text-orange border dark:border-green light:border-orange font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
               >
                 Editar
               </button>
@@ -119,7 +119,7 @@ export default function ViewMyTask() {
                     }, 2000);
                   }
                 }}
-                className="bg-green text-dark font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
+                className="dark:bg-green light:bg-orange text-dark font-medium px-4 py-2 rounded-xl cursor-pointer hover:opacity-50 transition-opacity"
               >
                 Concluída
               </button>
@@ -129,21 +129,21 @@ export default function ViewMyTask() {
           {showEdit && (
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="z-50 w-11/12 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 p-6 bg-dark flex flex-col justify-center items-center gap-6 rounded-lg"
+              className="z-50 w-11/12 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 p-6 dark:bg-dark light:bg-white-secondary flex flex-col justify-center items-center gap-6 rounded-lg"
             >
               <div className="space-x-2 flex items-center">
                 <label htmlFor="date">Data para concluir tarefa </label>
                 <input
                   type="date"
                   id="date"
-                  className="bg-dark p-[10px] w-fit border-b border-b-green outline-0"
+                  className="dark:bg-dark p-[10px] w-fit border-b dark:border-b-green light:border-b-orange outline-0"
                   {...register("date")}
                 />
               </div>
 
               <textarea
                 id="description"
-                className="bg-dark rounded-xl ring focus:ring focus:ring-green text-white/50 px-3 py-[10px] outline-0"
+                className="dark:bg-dark light:bg-white rounded-xl ring focus:ring dark:focus:ring-green light:focus:ring-orange dark:text-white/50 px-3 py-[10px] outline-0"
                 placeholder="Descrição"
                 {...register("description")}
               ></textarea>
@@ -151,13 +151,13 @@ export default function ViewMyTask() {
               <div className="flex gap-4 items-center w-fit mx-auto">
                 <button
                   onClick={() => setShowEdit(false)}
-                  className="ring ring-green p-2 rounded-2xl cursor-pointer w-24"
+                  className="ring dark:ring-green light:ring-orange light:text-orange p-2 rounded-2xl cursor-pointer w-24"
                 >
                   Fechar
                 </button>
                 <button
                   type="submit"
-                  className="bg-green p-2 text-dark rounded-2xl cursor-pointer w-24"
+                  className="dark:bg-green light:bg-orange p-2 text-dark rounded-2xl cursor-pointer w-24"
                 >
                   Editar
                 </button>
@@ -168,14 +168,14 @@ export default function ViewMyTask() {
       )}
       <div
         ref={successAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>{alertText}</p>
       </div>
 
       <div
         ref={errorAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>Erro ao editar tarefa</p>
       </div>

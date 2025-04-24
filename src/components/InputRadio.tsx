@@ -22,7 +22,7 @@ export default function InputRadio({
         value={label}
         {...register("category")}
       />
-      <div className="w-4 h-4 rounded-full bg-dark border border-green peer-checked:bg-green transition-all"></div>
+      <div className="w-4 h-4 rounded-full dark:bg-dark border dark:border-green light:border-orange dark:peer-checked:bg-green light:peer-checked:bg-orange transition-all"></div>
       {label}
     </label>
   );

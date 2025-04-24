@@ -14,3 +14,10 @@ export type User = {
   password: string;
   tasks: Task[];
 };
+
+export type Theme = "light" | "dark";
+
+export interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
+}
