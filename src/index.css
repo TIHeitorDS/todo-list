@@ -8,6 +8,11 @@
   --color-pink: #ff3b8d;
   --color-orange: #ff9800;
   --color-blue: #2196f3;
-  --color-gray: #9c27b0;
+  --color-terracotta: #d99579;
+  --color-lilac: #bca8d9;
+  --color-white-secondary: #ffffff;
   --font-poppins: Poppins, sans-serif;
 }
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));

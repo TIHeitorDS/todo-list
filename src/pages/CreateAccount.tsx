@@ -48,7 +48,7 @@ export default function CreateAccount() {
           <input
             type="text"
             placeholder="Nome completo"
-            className="mt-4 w-80 bg-dark p-[10px] rounded-xl outline-0 focus:border focus:border-green"
+            className="mt-4 w-80 dark:bg-dark light:bg-white-secondary p-[10px] rounded-xl outline-0 focus:border dark:focus:border-green light:focus:border-orange"
             {...register("name", { required: true })}
           />
         </div>
@@ -56,7 +56,7 @@ export default function CreateAccount() {
           <input
             type="email"
             placeholder="E-mail"
-            className="mt-4 w-80 bg-dark p-[10px] rounded-xl outline-0 focus:border focus:border-green"
+            className="mt-4 w-80 dark:bg-dark light:bg-white-secondary p-[10px] rounded-xl outline-0 focus:border dark:focus:border-green light:focus:border-orange"
             {...register("email", { required: true })}
           />
         </div>
@@ -65,7 +65,7 @@ export default function CreateAccount() {
           <input
             type="password"
             placeholder="Senha"
-            className="mt-4 w-80 bg-dark p-[10px] rounded-xl outline-0 focus:border focus:border-green"
+            className="mt-4 w-80 dark:bg-dark light:bg-white-secondary p-[10px] rounded-xl outline-0 focus:border dark:focus:border-green light:focus:border-orange"
             {...register("password", { required: true })}
           />
         </div>
@@ -73,13 +73,13 @@ export default function CreateAccount() {
         <div className="flex justify-center items-center mt-12">
           <Link
             to="/login"
-            className="border border-green rounded-xl p-[10px] w-36 block text-center hover:opacity-50 transition-opacity"
+            className="border dark:border-green light:border-orange font-medium rounded-xl p-[10px] w-36 block text-center hover:opacity-50 transition-opacity"
           >
             Voltar
           </Link>
           <button
             type="submit"
-            className="bg-green text-dark p-[10px] rounded-xl w-36 flex justify-center items-center mx-auto cursor-pointer hover:opacity-50 transition-opacity"
+            className="dark:bg-green light:bg-orange font-medium text-dark p-[10px] rounded-xl w-36 flex justify-center items-center mx-auto cursor-pointer hover:opacity-50 transition-opacity"
           >
             Criar conta
           </button>
@@ -88,14 +88,14 @@ export default function CreateAccount() {
 
       <div
         ref={successAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-green absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>Conta criada com sucesso</p>
       </div>
 
       <div
         ref={errorAlert}
-        className="bg-white font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
+        className="dark:bg-white light:bg-white-secondary font-bold text-lg tracking-wide text-dark p-4 flex justify-center items-center border-b-4 border-b-red-500 absolute top-0 inset-x-0 translate-x-full transition-all duration-300"
       >
         <p>Erro ao criar sua conta</p>
       </div>

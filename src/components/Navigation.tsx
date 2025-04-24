@@ -6,7 +6,7 @@ export default function Navigation({
   return (
     <nav className="w-11/12 mx-auto">
       {children}
-      <hr className="border border-green mt-[10px]" />
+      <hr className="border dark:border-green light:border-orange mt-[10px]" />
     </nav>
   );
 }

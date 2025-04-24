@@ -1,4 +1,4 @@
-import checkingTask from "../assets/Checking tasks in notepad.svg";
+import checkingTask from "../assets/checking_tasks_in_notepad.svg";
 import { useForm } from "react-hook-form";
 import { User } from "../lib/definitions";
 import { login } from "../firebase/database";
@@ -48,24 +48,24 @@ export default function Login() {
         <div>
           <input
             type="email"
-            placeholder="e-mail"
-            className="mt-4 w-80 bg-dark p-[10px] rounded-xl outline-0 focus:border focus:border-green"
-            {...register("email")}
+            placeholder="E-mail"
+            className="mt-4 w-80 dark:bg-dark light:bg-white-secondary p-[10px] rounded-xl outline-0 focus:border dark:focus:border-green light:focus:border-orange"
+            {...register("email", {required: true})}
           />
         </div>
 
         <div>
           <input
             type="password"
-            placeholder="senha"
-            className="mt-4 w-80 bg-dark p-[10px] rounded-xl outline-0 focus:border focus:border-green"
-            {...register("password")}
+            placeholder="Senha"
+            className="mt-4 w-80 dark:bg-dark light:bg-white-secondary p-[10px] rounded-xl outline-0 focus:border dark:focus:border-green light:focus:border-orange"
+            {...register("password", {required: true})}
           />
         </div>
 
         <button
           type="submit"
-          className="bg-green text-dark p-[10px] rounded-xl w-36 mt-12 flex justify-center items-center mx-auto cursor-pointer hover:opacity-50 transition-opacity"
+          className="dark:bg-green light:bg-orange font-medium text-dark p-[10px] rounded-xl w-36 mt-12 flex justify-center items-center mx-auto cursor-pointer hover:opacity-50 transition-opacity"
         >
           {isLoading ? <img src={loader} className="animate-spin" /> : "Entrar"}
         </button>
@@ -75,7 +75,7 @@ export default function Login() {
         Não possui uma conta?{" "}
         <Link
           to={"/cadastrar"}
-          className="text-green cursor-pointer hover:opacity-50 transition-opacity"
+          className="dark:text-green light:text-orange cursor-pointer hover:opacity-50 transition-opacity"
         >
           {" "}
           cadastre-se agora
