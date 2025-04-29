@@ -12,7 +12,7 @@ export default function TaskSection({
   searchTerm: string;
 }) {
   const [tasks, setTasks] = useState<Task[]>();
-  const { user } = useLogin();
+  const { authenticatedUser: user } = useLogin();
 
   useEffect(() => {
     if (user) {

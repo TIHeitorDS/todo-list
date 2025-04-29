@@ -9,7 +9,7 @@ import { useRef } from "react";
 
 export default function CreateTask() {
   const { register, handleSubmit, reset } = useForm<Task>();
-  const { user } = useLogin();
+  const { authenticatedUser: user } = useLogin();
   const successAlert = useRef<HTMLDivElement>(null);
   const errorAlert = useRef<HTMLDivElement>(null);
 
