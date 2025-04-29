@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 export default function ViewMyTask() {
   let params = useParams();
   const [task, setTask] = useState<Task | null>();
-  const { user } = useLogin();
+  const { authenticatedUser: user } = useLogin();
   const { register, handleSubmit, reset, setValue } = useForm();
   const [showEdit, setShowEdit] = useState(false);
   const successAlert = useRef<HTMLDivElement>(null);
@@ -67,7 +67,9 @@ export default function ViewMyTask() {
 
   return (
     <>
-      <div className={`relative overflow-hidden w-full ${showEdit && "blur-sm"}`}>
+      <div
+        className={`relative overflow-hidden w-full ${showEdit && "blur-sm"}`}
+      >
         {task && (
           <>
             <Navigation>

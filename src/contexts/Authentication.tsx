@@ -2,12 +2,12 @@ import { createContext, useState } from "react";
 import { User } from "../lib/definitions";
 
 interface UserContextType {
-  user: User | undefined;
+  authenticatedUser: User | undefined;
   handleLogin: (user: User | undefined) => void;
 }
 
 export const UserContext = createContext<UserContextType>({
-  user: undefined,
+  authenticatedUser: undefined,
   handleLogin: () => {},
 });
 
@@ -23,7 +23,7 @@ export default function Authentication({
   }
 
   return (
-    <UserContext.Provider value={{ user, handleLogin }}>
+    <UserContext.Provider value={{ authenticatedUser: user, handleLogin }}>
       {children}
     </UserContext.Provider>
   );

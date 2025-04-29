@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import { useTheme } from "../hooks/useTheme";
 
 export default function Home() {
-  const { user } = useLogin();
+  const { authenticatedUser: user } = useLogin();
   const [value, setValue] = useState<string>("");
   const { theme, toggleTheme } = useTheme();
 
